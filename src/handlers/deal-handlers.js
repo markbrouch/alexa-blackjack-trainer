@@ -47,7 +47,13 @@ export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
   [INTENTS.ACTION_INTENT]() {
     // const action = this.event.request.intent.slots.Action.value;
 
+  },
 
+  'Unhandled'() {
+    const prompt = `${this.t('COMMON.UNHANDLED')} ${this.t('DEAL.SUGGESTION')} ${this.t('DEAL.PROMPT')}`
+    const reprompt = `${this.t('DEAL.SUGGESTION')} ${this.t('DEAL.PROMPT')}`
+
+    this.emit(':ask', prompt, reprompt)
   }
 })
 
