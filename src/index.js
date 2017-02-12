@@ -1,5 +1,4 @@
-import { name, version } from '../package.json'
-import languageString from '../i18n.json'
+import languageString from './i18n.json'
 
 import { handler } from 'alexa-sdk'
 
