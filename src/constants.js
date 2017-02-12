@@ -18,8 +18,7 @@ export const ATTRIBUTES = {
   },
   DEALER_CARDS: {
     NAME: 'dealerCards',
-    CARD_1: 'card1',
-    CARD_2: 'card2'
+    CARD_1: 'card1'
   }
 }
 

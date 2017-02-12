@@ -2,26 +2,16 @@ import blackjack from 'engine-blackjack'
 
 import { ATTRIBUTES, CARDS, ENGINE } from './constants'
 
-const getCards = () => {
+export const getCards = () => {
   const game = new blackjack.Game()
   game.dispatch(blackjack.actions.deal({ bet: 0 }))
 
   const { handInfo, dealerCards } = game.getState()
 
   return {
-    playerCards: handInfo.right.cards,
-    dealerCards
-  }
-}
-
-export const deal = function deal() {
-  const { playerCards, dealerCards } = getCards()
-
-  this.attributes = {
-    ...this.attributes,
     [ATTRIBUTES.PLAYER_CARDS.NAME]: {
-      [ATTRIBUTES.PLAYER_CARDS.CARD_1]: playerCards[0],
-      [ATTRIBUTES.PLAYER_CARDS.CARD_2]: playerCards[1]
+      [ATTRIBUTES.PLAYER_CARDS.CARD_1]: handInfo.right.cards[0],
+      [ATTRIBUTES.PLAYER_CARDS.CARD_2]: handInfo.right.cards[1]
     },
     [ATTRIBUTES.DEALER_CARDS.NAME]: {
       [ATTRIBUTES.DEALER_CARDS.CARD_1]: dealerCards[0]

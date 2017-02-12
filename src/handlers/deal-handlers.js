@@ -1,15 +1,29 @@
 import { CreateStateHandler } from 'alexa-sdk'
 
 import { SKILL_STATES, INTENTS, ATTRIBUTES } from '../constants'
-import { deal, getRank, getSuit } from '../blackjack'
+import { getCards, getRank, getSuit } from '../blackjack'
 
 export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
   [INTENTS.DEAL_INTENT]() {
-    deal.call(this)
+    const { playerCards, dealerCards } = getCards();
+    const {
+      [ATTRIBUTES.PLAYER_CARDS.CARD_1]: card1,
+      [ATTRIBUTES.PLAYER_CARDS.CARD_2]: card2
+    } = playerCards;
+    const {
+      [ATTRIBUTES.DEALER_CARDS.CARD_1]: dealerCard
+    } = dealerCards;
 
-    const card1 = this.attributes[ATTRIBUTES.PLAYER_CARDS.NAME][ATTRIBUTES.PLAYER_CARDS.CARD_1]
-    const card2 = this.attributes[ATTRIBUTES.PLAYER_CARDS.NAME][ATTRIBUTES.PLAYER_CARDS.CARD_2]
-    const dealerCard = this.attributes[ATTRIBUTES.DEALER_CARDS.NAME][ATTRIBUTES.DEALER_CARDS.CARD_1]
+    this.attributes = {
+      ...this.attributes,
+      [ATTRIBUTES.PLAYER_CARDS.NAME]: {
+        [ATTRIBUTES.PLAYER_CARDS.CARD_1]: card1,
+        [ATTRIBUTES.PLAYER_CARDS.CARD_2]: card2
+      },
+      [ATTRIBUTES.DEALER_CARDS.NAME]: {
+        [ATTRIBUTES.DEALER_CARDS.CARD_1]: dealerCard
+      }
+    }
 
     const prompt = `${this.t('DEAL.DEALT', {
       card1: this.t('CARDS.CARD', {
@@ -31,6 +45,8 @@ export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
   },
 
   [INTENTS.ACTION_INTENT]() {
+    // const action = this.event.request.intent.slots.Action.value;
+
 
   }
 })
