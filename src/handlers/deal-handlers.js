@@ -72,6 +72,46 @@ export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
     this.emit(':ask', prompt, reprompt)
   },
 
+  'AMAZON.RepeatIntent'() {
+    const {
+      [ATTRIBUTES.PLAYER_CARDS.CARD_1]: card1,
+      [ATTRIBUTES.PLAYER_CARDS.CARD_2]: card2
+    } = this.attributes[ATTRIBUTES.PLAYER_CARDS.NAME]
+    const {
+      [ATTRIBUTES.DEALER_CARDS.CARD_1]: dealerCard
+    } = this.attributes[ATTRIBUTES.DEALER_CARDS.NAME]
+
+    const prompt = `${this.t('DEAL.DEALT', {
+      card1: this.t('CARDS.CARD', {
+        rank: this.t(`CARDS.RANKS.${getRank(card1)}`),
+        suit: this.t(`CARDS.SUITS.${getSuit(card1)}`)
+      }),
+      card2: this.t('CARDS.CARD', {
+        rank: this.t(`CARDS.RANKS.${getRank(card2)}`),
+        suit: this.t(`CARDS.SUITS.${getSuit(card2)}`)
+      }),
+      dealerCard: this.t('CARDS.CARD', {
+        rank: this.t(`CARDS.RANKS.${getRank(dealerCard)}`),
+        suit: this.t(`CARDS.SUITS.${getSuit(dealerCard)}`)
+      })
+    })} ${this.t('DEAL.PROMPT')}`
+    const reprompt = `${this.t('DEAL.SUGGESTION')} ${this.t('DEAL.PROMPT')}`
+
+    this.emit(':ask', prompt, reprompt)
+  },
+
+  'AMAZON.HelpIntent'() {
+    const prompt = `${this.t('DEAL.SUGGESTION')} ${this.t('DEAL.PROMPT')}`
+    const reprompt = `${this.t('DEAL.SUGGESTION')} ${this.t('DEAL.PROMPT')}`
+
+    this.emit(':ask', prompt, reprompt)
+  },
+
+  'AMAZON.CancelIntent'() {
+    this.handler.state = SKILL_STATES.START
+    this.emitWithState([INTENTS.START_INTENT])
+  },
+
   'Unhandled'() {
     const prompt = `${this.t('COMMON.UNHANDLED')} ${this.t('DEAL.SUGGESTION')} ${this.t('DEAL.PROMPT')}`
     const reprompt = `${this.t('DEAL.SUGGESTION')} ${this.t('DEAL.PROMPT')}`
