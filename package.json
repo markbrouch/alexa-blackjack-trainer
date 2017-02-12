@@ -1,0 +1,45 @@
+{
+  "name": "alexa-blackjack-trainer",
+  "description": "A blackjack trainer skill for Alexa.",
+  "version": "0.1.0",
+  "author": "Mark Brouch <mark.brouch@gmail.com>",
+  "bugs": {
+    "url": "/issues"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "json-loader": "^0.5.4",
+    "node-lambda": "^0.8.13",
+    "webpack": "^1.13.3",
+    "webpack-node-externals": "^1.5.4"
+  },
+  "homepage": "#readme",
+  "keywords": [],
+  "license": "MIT",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+.git"
+  },
+  "scripts": {
+    "deploy": "node-lambda deploy --handler dist/index.default --configFile deploy.env --functionName $npm_package_name --description \"$npm_package_description\"",
+    "lambda": "node-lambda",
+    "package": "node-lambda package --handler dist/index.default --configFile deploy.env --functionName $npm_package_name --excludeGlobs \"./index.js webpack.config.js context.json event.json .babelrc .nvmrc .gitignore LICENSE.md README.md\"",
+    "postinstall": "node-lambda setup",
+    "predeploy": "NODE_ENV=production webpack -p",
+    "prepackage": "NODE_ENV=production webpack -p",
+    "pretest": "webpack",
+    "setup": "node-lambda setup",
+    "start": "webpack --watch",
+    "test": "eval $([ -f deploy.env ] && cat deploy.env) node-lambda run --handler dist/index.default",
+    "webpack": "webpack"
+  },
+  "dependencies": {
+    "alexa-sdk": "^1.0.6",
+    "blackjack-strategy": "^1.3.2",
+    "engine-blackjack": "^0.1.91"
+  }
+}

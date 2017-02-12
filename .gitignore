@@ -1,3 +1,16 @@
+# Project
+dist/*
+!dist/.gitkeep
+
+# Lambda
+.env
+deploy.env
+context.json
+event.json
+
+# System
+.DS_Store
+
 # Logs
 logs
 *.log
