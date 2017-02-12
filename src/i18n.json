@@ -17,7 +17,19 @@
       "DEAL": {
         "DEALT": "You were dealt the {{card1}} and {{card2}}. Dealer is showing the {{dealerCard}}.",
         "PROMPT": "What should you do?",
-        "SUGGESTION": "You can say Blackjack actions like 'Hit' or 'Stay'."
+        "SUGGESTION": "You can say Blackjack actions like 'Hit' or 'Stay'.",
+        "PLAY_AGAIN": "Would you like me to deal again?"
+      },
+      "ACTION": {
+        "HIT": "hit",
+        "STAY": "stay",
+        "DOUBLE": "double",
+        "SPLIT": "split",
+        "SURRENDER": "surrender"
+      },
+      "STRATEGY": {
+        "CORRECT": "Correct, you should {{action}}.",
+        "INCORRECT": "Wrong, you should {{action}}."
       },
       "CARDS": {
         "CARD": "{{rank}} of {{suit}}",

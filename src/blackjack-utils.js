@@ -1,6 +1,7 @@
 import blackjack from 'engine-blackjack'
+import { GetRecommendedPlayerAction } from 'blackjack-strategy'
 
-import { ATTRIBUTES, CARDS, ENGINE } from './constants'
+import { ATTRIBUTES, CARDS, ENGINE, ACTIONS, STRATEGY, RULES } from './constants'
 
 export const getCards = () => {
   const game = new blackjack.Game()
@@ -19,7 +20,7 @@ export const getCards = () => {
   }
 }
 
-export const getRank = (card) => {
+export const getRank = card => {
   switch (card[ENGINE.CARDS.VALUE.NAME]) {
     case 1: return CARDS.RANKS.ACE
     case 2: return CARDS.RANKS.TWO
@@ -37,7 +38,7 @@ export const getRank = (card) => {
   }
 }
 
-export const getSuit = (card) => {
+export const getSuit = card => {
   switch (card[ENGINE.CARDS.SUITS.NAME]) {
     case ENGINE.CARDS.SUITS.HEARTS: return CARDS.SUITS.HEARTS
     case ENGINE.CARDS.SUITS.DIAMONDS: return CARDS.SUITS.DIAMONDS
@@ -45,3 +46,33 @@ export const getSuit = (card) => {
     case ENGINE.CARDS.SUITS.CLUBS: return CARDS.SUITS.CLUBS
   }
 }
+
+export const normalizeAction = action => ACTIONS[action.toUpperCase()]
+
+const getStrategyValue = card => {
+  switch (card[ENGINE.CARDS.VALUE.NAME]) {
+    case 11:
+    case 12:
+    case 13:
+      return STRATEGY.FACE_VALUE
+    default:
+      return card[ENGINE.CARDS.VALUE.NAME]
+  }
+}
+
+export const getStrategy = (playerCards, dealerCards) => normalizeAction(
+  GetRecommendedPlayerAction(
+    [
+      getStrategyValue(playerCards[ATTRIBUTES.PLAYER_CARDS.CARD_1]),
+      getStrategyValue(playerCards[ATTRIBUTES.PLAYER_CARDS.CARD_2])
+    ],
+    getStrategyValue(dealerCards[ATTRIBUTES.DEALER_CARDS.CARD_1]),
+    STRATEGY.HAND_COUNT,
+    STRATEGY.DEALER_CHECKED,
+    {
+      [STRATEGY.OPTIONS.INSURANCE]: RULES.INSURANCE
+    }
+  )
+)
+
+export const validateAction = (action, strategy) => action === strategy

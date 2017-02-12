@@ -1,7 +1,14 @@
 import { CreateStateHandler } from 'alexa-sdk'
 
 import { SKILL_STATES, INTENTS, ATTRIBUTES } from '../constants'
-import { getCards, getRank, getSuit } from '../blackjack'
+import {
+  getCards,
+  getRank,
+  getSuit,
+  normalizeAction,
+  getStrategy,
+  validateAction
+} from '../blackjack-utils'
 
 export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
   [INTENTS.DEAL_INTENT]() {
@@ -45,8 +52,24 @@ export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
   },
 
   [INTENTS.ACTION_INTENT]() {
-    // const action = this.event.request.intent.slots.Action.value;
+    const action = normalizeAction(this.event.request.intent.slots.Action.value);
+    const strategy = getStrategy(
+      this.attributes[ATTRIBUTES.PLAYER_CARDS.NAME],
+      this.attributes[ATTRIBUTES.DEALER_CARDS.NAME]
+    )
 
+    const prompt = `${validateAction(action, strategy)
+      ? this.t('STRATEGY.CORRECT', {
+        action: this.t(`ACTION.${action}`)
+      })
+      : this.this.t('STRATEGY.INCORRECT', {
+        action: this.t(`ACTION.${strategy}`)
+      })
+    } ${this.t('DEAL.PLAY_AGAIN')}`
+    const reprompt = this.t('DEAL.PLAY_AGAIN');
+
+    this.handler.state = SKILL_STATES.PLAY_AGAIN
+    this.emit(':ask', prompt, reprompt)
   },
 
   'Unhandled'() {

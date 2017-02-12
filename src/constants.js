@@ -1,7 +1,8 @@
 export const SKILL_STATES = {
   START: 'START',
   HELP: 'HELP',
-  DEAL: 'DEAL'
+  DEAL: 'DEAL',
+  PLAY_AGAIN: 'PLAY_AGAIN'
 }
 
 export const INTENTS = {
@@ -59,4 +60,26 @@ export const CARDS = {
     SPADES: 'SPADES',
     CLUBS: 'CLUBS'
   }
+}
+
+export const ACTIONS = {
+  HIT: 'HIT',
+  STAND: 'STAY',
+  STAY: 'STAY',
+  DOUBLE: 'DOUBLE',
+  SPLIT: 'SPLIT',
+  SURRENDER: 'SURRENDER'
+}
+
+export const STRATEGY = {
+  FACE_VALUE: 10,
+  HAND_COUNT: 1,
+  DEALER_CHECKED: false,
+  OPTIONS: {
+    INSURANCE: 'offerInsurance'
+  }
+}
+
+export const RULES = {
+  INSURANCE: false
 }
