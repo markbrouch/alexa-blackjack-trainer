@@ -1,0 +1,48 @@
+{
+  "en-US": {
+    "translation": {
+      "COMMON": {
+        "PROMPT": "What would you like to do?",
+        "UNHANDLED": "Sorry, I didn't recognize that."
+      },
+      "START": {
+        "WELCOME": "Welcome to Blackjack Trainer.",
+        "SUGGESTION": "You can ask me to deal, or for help."
+      },
+      "HELP": {
+        "DESCRIPTION": "Blackjack Trainer is a skill to help you learn Basic Strategy for the card game Blackjack. I will deal you a hand and you must say the correct move.",
+        "MORE": "Would you like to hear more?",
+        "RULES": "I will assess your move based on Basic Strategy odds, assuming the following rules: Dealer must hit on soft 17; You may split at any time up to 4 hands; You may double at any time; You may surrender."
+      },
+      "DEAL": {
+        "DEALT": "You were dealt the {{card1}} and {{card2}}. Dealer is showing the {{dealerCard}}.",
+        "PROMPT": "What should you do?",
+        "SUGGESTION": "You can say Blackjack actions like 'Hit' or 'Stay'."
+      },
+      "CARDS": {
+        "CARD": "{{rank}} of {{suit}}",
+        "RANKS": {
+          "ACE": "Ace",
+          "TWO": "Two",
+          "THREE": "Three",
+          "FOUR": "Four",
+          "FIVE": "Five",
+          "SIX": "Six",
+          "SEVEN": "Seven",
+          "EIGHT": "Eight",
+          "NINE": "Nine",
+          "TEN": "Ten",
+          "JACK": "Jack",
+          "QUEEN": "Queen",
+          "KING": "King"
+        },
+        "SUITS": {
+          "HEARTS": "Hearts",
+          "DIAMONDS": "Diamonds",
+          "SPADES": "Spades",
+          "CLUBS": "Clubs"
+        }
+      }
+    }
+  }
+}
