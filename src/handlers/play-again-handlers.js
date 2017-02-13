@@ -11,7 +11,7 @@ export const playAgainHandlers = CreateStateHandler(SKILL_STATES.PLAY_AGAIN, {
 
   'AMAZON.YesIntent'() {
     this.handler.state = SKILL_STATES.DEAL
-    this.emitWithState(INTENTS.DEAL_INTENT)
+    this.emitWithState(INTENTS.DEAL_INTENT, true)
   },
 
   'AMAZON.NoIntent'() {

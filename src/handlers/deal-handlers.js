@@ -13,8 +13,8 @@ import {
 let { playerCards, dealerCards } = getCards()
 
 export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
-  [INTENTS.DEAL_INTENT]() {
-    const cards = getCards()
+  [INTENTS.DEAL_INTENT](shouldDeal) {
+    const cards = shouldDeal ? getCards() : { playerCards, dealerCards }
     playerCards = cards.playerCards
     dealerCards = cards.dealerCards
 
