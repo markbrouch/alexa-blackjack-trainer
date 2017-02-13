@@ -1,0 +1,12 @@
+DealIntent a new round
+DealIntent a round
+DealIntent deal
+DealIntent deal a new round
+DealIntent deal a round
+DealIntent a new hand
+DealIntent a hand
+
+ActionIntent {Action}
+ActionIntent i.d like to {Action}
+ActionIntent you should {Action}
+ActionIntent i should {Action}

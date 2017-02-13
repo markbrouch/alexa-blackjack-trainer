@@ -1,0 +1,34 @@
+{
+  "intents": [
+    {
+      "intent": "DealIntent"
+    },
+    {
+      "intent": "ActionIntent",
+      "slots": [
+        {
+          "name": "Action",
+          "type": "BLACKJACK_ACTIONS"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.RepeatIntent"
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    }
+  ]
+}
