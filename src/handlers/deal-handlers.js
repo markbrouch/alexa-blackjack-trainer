@@ -75,6 +75,12 @@ export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
     this.emitWithState([INTENTS.START_INTENT])
   },
 
+  'AMAZON.StopIntent'() {
+    const prompt = this.t('COMMON.GOODBYE')
+
+    this.emit(':tell', prompt)
+  },
+
   'Unhandled'() {
     const prompt = `${this.t('COMMON.UNHANDLED')} ${this.t('DEAL.SUGGESTION')} ${this.t('DEAL.PROMPT')}`
     const reprompt = `${this.t('DEAL.SUGGESTION')} ${this.t('DEAL.PROMPT')}`

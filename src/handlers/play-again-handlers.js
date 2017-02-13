@@ -26,6 +26,12 @@ export const playAgainHandlers = CreateStateHandler(SKILL_STATES.PLAY_AGAIN, {
     this.emit(':tell', prompt)
   },
 
+  'AMAZON.StopIntent'() {
+    const prompt = this.t('COMMON.GOODBYE')
+
+    this.emit(':tell', prompt)
+  },
+
   'Unhandled'() {
     const prompt = `${this.t('COMMON.UNHANDLED')} ${this.t('DEAL.PLAY_AGAIN')}`
     const reprompt = this.t('DEAL.PLAY_AGAIN')

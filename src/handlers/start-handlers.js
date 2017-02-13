@@ -23,6 +23,18 @@ export const startHandlers = CreateStateHandler(SKILL_STATES.START, {
     this.emit(':ask', prompt, reprompt)
   },
 
+  'AMAZON.CancelIntent'() {
+    const prompt = this.t('COMMON.GOODBYE')
+
+    this.emit(':tell', prompt)
+  },
+
+  'AMAZON.StopIntent'() {
+    const prompt = this.t('COMMON.GOODBYE')
+
+    this.emit(':tell', prompt)
+  },
+
   'Unhandled'() {
     const prompt = `${this.t('COMMON.UNHANDLED')} ${this.t('COMMON.PROMPT')}`
     const reprompt = `${this.t('START.SUGGESTION')} ${this.t('COMMON.PROMPT')}`
