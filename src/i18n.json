@@ -3,7 +3,7 @@
     "translation": {
       "COMMON": {
         "PROMPT": "What would you like to do?",
-        "UNHANDLED": "Sorry, I didn't recognize that.",
+        "UNHANDLED": "Sorry, I didn't understand.",
         "GOODBYE": "Ok."
       },
       "START": {

@@ -2,7 +2,7 @@ import { CreateStateHandler } from 'alexa-sdk'
 
 import { SKILL_STATES, INTENTS } from '../constants'
 
-export const playAgainHandlers = CreateStateHandler(SKILL_STATES.HELP, {
+export const playAgainHandlers = CreateStateHandler(SKILL_STATES.PLAY_AGAIN, {
   'AMAZON.RepeatIntent'() {
     const prompt = this.t('DEAL.PLAY_AGAIN')
 

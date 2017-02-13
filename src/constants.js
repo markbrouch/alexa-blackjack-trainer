@@ -8,6 +8,7 @@ export const SKILL_STATES = {
 export const INTENTS = {
   START_INTENT: 'StartIntent',
   DEAL_INTENT: 'DealIntent',
+  READ_CARDS: 'ReadCards',
   ACTION_INTENT: 'ActionIntent'
 }
 
