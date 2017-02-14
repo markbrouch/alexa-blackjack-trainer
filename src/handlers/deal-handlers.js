@@ -1,6 +1,6 @@
 import { CreateStateHandler } from 'alexa-sdk'
 
-import { SKILL_STATES, INTENTS, ATTRIBUTES } from '../constants'
+import { SKILL_STATES, INTENTS } from '../constants'
 import {
   getCards,
   getRank,
@@ -53,7 +53,7 @@ export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
         action: this.t(`ACTION.${strategy}`)
       })
     } ${this.t('DEAL.PLAY_AGAIN')}`
-    const reprompt = this.t('DEAL.PLAY_AGAIN');
+    const reprompt = this.t('DEAL.PLAY_AGAIN')
 
     this.handler.state = SKILL_STATES.PLAY_AGAIN
     this.emit(':ask', prompt, reprompt)

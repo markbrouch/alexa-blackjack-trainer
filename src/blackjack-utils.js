@@ -35,6 +35,7 @@ export const getRank = card => {
     case 11: return CARDS.RANKS.JACK
     case 12: return CARDS.RANKS.QUEEN
     case 13: return CARDS.RANKS.KING
+    default: return false
   }
 }
 
@@ -44,6 +45,7 @@ export const getSuit = card => {
     case ENGINE.CARDS.SUITS.DIAMONDS: return CARDS.SUITS.DIAMONDS
     case ENGINE.CARDS.SUITS.SPADES: return CARDS.SUITS.SPADES
     case ENGINE.CARDS.SUITS.CLUBS: return CARDS.SUITS.CLUBS
+    default: return false
   }
 }
 

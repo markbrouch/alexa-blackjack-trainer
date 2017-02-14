@@ -1,12 +1,12 @@
-import languageString from './i18n.json'
-
 import { handler } from 'alexa-sdk'
 
+import languageString from './i18n.json'
+
 import { SKILL_STATES, INTENTS } from './constants'
-import startHandlers from './handlers/start-handlers'
-import helpHandlers from './handlers/help-handlers'
-import dealHandlers from './handlers/deal-handlers'
-import playAgainHandlers from './handlers/play-again-handlers'
+import { startHandlers } from './handlers/start-handlers'
+import { helpHandlers } from './handlers/help-handlers'
+import { dealHandlers } from './handlers/deal-handlers'
+import { playAgainHandlers } from './handlers/play-again-handlers'
 
 const newSessionHandlers = {
   'LaunchRequest'() {
@@ -42,11 +42,7 @@ const newSessionHandlers = {
   }
 }
 
-export default (event, context, callback) => {
-  // console.log('event:', event)
-  // console.log('context:', context)
-  // console.log('env:', process.env)
-
+export default (event, context) => {
   const alexa = handler(event, context)
 
   alexa.appId = process.env.APP_ID

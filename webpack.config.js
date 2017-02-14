@@ -16,9 +16,16 @@ module.exports = {
     whitelist: ['engine-blackjack']
   })],
   module: {
+    preLoaders: [
+      { test:/\.js$/, loader:'eslint' }
+    ],
     loaders: [
       { test:/\.js$/, loader:'babel' },
       { test:/\.json$/, loader:'json' }
     ]
+  },
+  eslint: {
+    failOnWarning: false,
+    failOnError: true
   }
 };
