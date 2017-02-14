@@ -1,0 +1,7 @@
+BLACKJACK_ACTIONS
+hit
+stay
+stand
+double
+split
+surrender
