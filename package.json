@@ -1,7 +1,7 @@
 {
   "name": "alexa-blackjack-trainer",
   "description": "A blackjack trainer skill for Alexa.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Mark Brouch <mark.brouch@gmail.com>",
   "bugs": {
     "url": "https://github.com/markbrouch/alexa-blackjack-trainer/issues",
@@ -22,7 +22,10 @@
     "webpack-node-externals": "^1.5.4"
   },
   "homepage": "https://github.com/markbrouch/alexa-blackjack-trainer",
-  "keywords": ["alexa", "blackjack"],
+  "keywords": [
+    "alexa",
+    "blackjack"
+  ],
   "license": "MIT",
   "main": "src/index.js",
   "repository": {
