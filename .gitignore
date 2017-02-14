@@ -5,6 +5,7 @@ dist/*
 # Lambda
 .env
 deploy.env
+deploy.dev.env
 context.json
 event.json
 
