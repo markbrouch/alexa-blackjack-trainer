@@ -15,6 +15,10 @@ import {
 let { playerCards, dealerCards } = getCards()
 
 export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
+  'NewSession'() {
+    this.emit('NewSession')
+  },
+
   [INTENTS.DEAL_INTENT](shouldDeal) {
     const cards = shouldDeal ? getCards() : { playerCards, dealerCards }
     playerCards = cards.playerCards
@@ -52,7 +56,7 @@ export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
 
 
     this.attributes[ATTRIBUTES.STATS.NAME] = stats
-    this.emit(':saveState', true)
+    this.emit(':saveState')
 
     const overallAccuracy = Math.round((
       +stats[ATTRIBUTES.STATS.WON] /
@@ -101,11 +105,6 @@ export const dealHandlers = CreateStateHandler(SKILL_STATES.DEAL, {
     const prompt = this.t('COMMON.GOODBYE')
 
     this.emit(':tell', prompt)
-  },
-
-  'SessionEndedRequest'() {
-    this.handler.state = ''
-    this.emit(':saveState', true)
   },
 
   'Unhandled'() {
