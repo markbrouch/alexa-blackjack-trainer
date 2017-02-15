@@ -28,6 +28,11 @@ export const helpHandlers = CreateStateHandler(SKILL_STATES.HELP, {
     this.emitWithState(INTENTS.START_INTENT)
   },
 
+  'SessionEndedRequest'() {
+    this.handler.state = ''
+    this.emit(':saveState', true)
+  },
+
   'Unhandled'() {
     const prompt = `${this.t('COMMON.UNHANDLED')} ${this.t('HELP.MORE')}`
     const reprompt = this.t('HELP.MORE')

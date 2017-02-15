@@ -32,6 +32,11 @@ export const playAgainHandlers = CreateStateHandler(SKILL_STATES.PLAY_AGAIN, {
     this.emit(':tell', prompt)
   },
 
+  'SessionEndedRequest'() {
+    this.handler.state = ''
+    this.emit(':saveState', true)
+  },
+
   'Unhandled'() {
     const prompt = `${this.t('COMMON.UNHANDLED')} ${this.t('DEAL.PLAY_AGAIN')}`
     const reprompt = this.t('DEAL.PLAY_AGAIN')
