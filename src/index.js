@@ -18,8 +18,8 @@ const newSessionHandlers = {
   },
 
   [INTENTS.DEAL_INTENT]() {
-    this.handler.state = SKILL_STATES.START
-    this.emitWithState(INTENTS.DEAL_INTENT)
+    this.handler.state = SKILL_STATES.DEAL
+    this.emitWithState(INTENTS.DEAL_INTENT, true)
   },
 
   'AMAZON.CancelIntent'() {
@@ -46,6 +46,7 @@ export default (event, context) => {
   const alexa = handler(event, context)
 
   alexa.appId = process.env.APP_ID
+  alexa.dynamoDBTableName = process.env.DYNAMODB_TABLE_NAME
   alexa.resources = languageString
   alexa.registerHandlers(
     newSessionHandlers,

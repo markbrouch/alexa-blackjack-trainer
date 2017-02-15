@@ -12,15 +12,23 @@ export const INTENTS = {
   ACTION_INTENT: 'ActionIntent'
 }
 
+export const HAND_TYPES = {
+  HARD_HIT: 'HARD_HIT',
+  HARD_STAY: 'HARD_STAY',
+  HARD_SPLIT: 'HARD_SPLIT',
+  HARD_DOUBLE: 'HARD_DOUBLE',
+  SOFT_HIT: 'SOFT_HIT',
+  SOFT_STAY: 'SOFT_STAY',
+  SOFT_SPLIT: 'SOFT_SPLIT',
+  SOFT_DOUBLE: 'SOFT_DOUBLE',
+  SURRENDER: 'SURRENDER'
+}
+
 export const ATTRIBUTES = {
-  PLAYER_CARDS: {
-    NAME: 'playerCards',
-    CARD_1: 'card1',
-    CARD_2: 'card2'
-  },
-  DEALER_CARDS: {
-    NAME: 'dealerCards',
-    CARD_1: 'card1'
+  STATS: {
+    NAME: 'STATS',
+    PLAYED: 'PLAYED',
+    WON: 'WON'
   }
 }
 
@@ -40,6 +48,10 @@ export const ENGINE = {
 }
 
 export const CARDS = {
+  CARD_1: 'card1',
+  CARD_2: 'card2',
+  HARD: 'HARD',
+  SOFT: 'SOFT',
   RANKS: {
     ACE: 'ACE',
     TWO: 'TWO',

@@ -35,6 +35,11 @@ export const startHandlers = CreateStateHandler(SKILL_STATES.START, {
     this.emit(':tell', prompt)
   },
 
+  'SessionEndedRequest'() {
+    this.handler.state = ''
+    this.emit(':saveState', true)
+  },
+
   'Unhandled'() {
     const prompt = `${this.t('COMMON.UNHANDLED')} ${this.t('COMMON.PROMPT')}`
     const reprompt = `${this.t('START.SUGGESTION')} ${this.t('COMMON.PROMPT')}`

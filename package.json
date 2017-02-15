@@ -44,8 +44,8 @@
     "pretest": "webpack",
     "setup": "node-lambda setup",
     "start": "webpack --watch",
-    "test": "eval $([ -f deploy.env ] && cat deploy.env) node-lambda run --handler dist/index.default",
-    "test:dev": "eval $([ -f deploy.dev.env ] && cat deploy.dev.env) node-lambda run --handler dist/index.default",
+    "test": "webpack && eval $([ -f deploy.env ] && cat deploy.env) node-lambda run --handler dist/index.default",
+    "test:dev": "webpack && eval $([ -f deploy.dev.env ] && cat deploy.dev.env) node-lambda run --handler dist/index.default",
     "webpack": "webpack"
   },
   "dependencies": {
