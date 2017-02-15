@@ -10,12 +10,12 @@ export const getCards = () => {
   const { handInfo, dealerCards } = game.getState()
 
   return {
-    [ATTRIBUTES.PLAYER_CARDS.NAME]: {
-      [ATTRIBUTES.PLAYER_CARDS.CARD_1]: handInfo.right.cards[0],
-      [ATTRIBUTES.PLAYER_CARDS.CARD_2]: handInfo.right.cards[1]
+    playerCards: {
+      card1: handInfo.right.cards[0],
+      card2: handInfo.right.cards[1]
     },
-    [ATTRIBUTES.DEALER_CARDS.NAME]: {
-      [ATTRIBUTES.DEALER_CARDS.CARD_1]: dealerCards[0]
+    dealerCards: {
+      card1: dealerCards[0]
     }
   }
 }
@@ -65,10 +65,10 @@ const getStrategyValue = card => {
 export const getStrategy = (playerCards, dealerCards) => normalizeAction(
   GetRecommendedPlayerAction(
     [
-      getStrategyValue(playerCards[ATTRIBUTES.PLAYER_CARDS.CARD_1]),
-      getStrategyValue(playerCards[ATTRIBUTES.PLAYER_CARDS.CARD_2])
+      getStrategyValue(playerCards.card1),
+      getStrategyValue(playerCards.card2)
     ],
-    getStrategyValue(dealerCards[ATTRIBUTES.DEALER_CARDS.CARD_1]),
+    getStrategyValue(dealerCards.card1),
     STRATEGY.HAND_COUNT,
     STRATEGY.DEALER_CHECKED,
     {
@@ -78,3 +78,36 @@ export const getStrategy = (playerCards, dealerCards) => normalizeAction(
 )
 
 export const validateAction = (action, strategy) => action === strategy
+
+export const getHandType = cards => (
+  cards[CARDS.CARD_1][ENGINE.CARDS.VALUE.NAME] === 1 ||
+  cards[CARDS.CARD_2][ENGINE.CARDS.VALUE.NAME] === 1
+    ? [CARDS.SOFT]
+    : [CARDS.HARD]
+)
+
+export const getStrategyType = (playerCards, strategy) => {
+  switch (strategy) {
+    case ACTIONS.SURRENDER: return strategy
+    default:
+      return `${getHandType(playerCards)}_${strategy}`
+  }
+}
+
+export const calculateStats = (stats = {}, strategyType, playerWon) => {
+  const handsPlayed = stats[ATTRIBUTES.STATS.PLAYED]
+  const handsWon = stats[ATTRIBUTES.STATS.WON]
+  const strategyTypeStats = stats[strategyType] || {}
+  const strategyTypePlayed = strategyTypeStats[ATTRIBUTES.STATS.PLAYED]
+  const strategyTypeWon = strategyTypeStats[ATTRIBUTES.STATS.WON]
+
+  return {
+    ...stats,
+    [ATTRIBUTES.STATS.PLAYED]: (handsPlayed || 0) + 1,
+    [ATTRIBUTES.STATS.WON]: (handsWon || 0) + playerWon ? 1 : 0,
+    [strategyType]: {
+      [ATTRIBUTES.STATS.PLAYED]: (strategyTypePlayed || 0) + 1,
+      [ATTRIBUTES.STATS.WON]: (strategyTypeWon || 0) + playerWon ? 1 : 0
+    }
+  }
+}

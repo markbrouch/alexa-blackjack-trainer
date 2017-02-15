@@ -32,6 +32,18 @@
         "CORRECT": "Correct, you should {{action}}.",
         "INCORRECT": "Wrong, you should {{action}}."
       },
+      "STATS": {
+        "ACCURACY": "You are {{handAccuracy}}% accurate on {{handType}} hands and {{overallAccuracy}}% overall.",
+        "HARD_HIT": "Hard Hit",
+        "HARD_STAY": "Hard Stand",
+        "HARD_SPLIT": "Hard Split",
+        "HARD_DOUBLE": "Hard Double",
+        "SOFT_HIT": "Soft Hit",
+        "SOFT_STAY": "Soft Stand",
+        "SOFT_SPLIT": "Soft Split",
+        "SOFT_DOUBLE": "Soft Double",
+        "SURRENDER": "Surrender"
+      },
       "CARDS": {
         "CARD": "{{rank}} of {{suit}}",
         "RANKS": {
