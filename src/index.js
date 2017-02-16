@@ -9,6 +9,14 @@ import { dealHandlers } from './handlers/deal-handlers'
 import { playAgainHandlers } from './handlers/play-again-handlers'
 
 const newSessionHandlers = {
+  'NewSession'() {
+    if (this.event.request.type === 'IntentRequest') {
+      this.emit(this.event.request.intent.name)
+    } else {
+      this.emit('LaunchRequest')
+    }
+  },
+
   'LaunchRequest'() {
     const prompt = `${this.t('START.WELCOME')} ${this.t('COMMON.PROMPT')}`
     const reprompt = `${this.t('START.SUGGESTION')} ${this.t('COMMON.PROMPT')}`

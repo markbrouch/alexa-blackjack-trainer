@@ -3,6 +3,10 @@ import { CreateStateHandler } from 'alexa-sdk'
 import { SKILL_STATES, INTENTS } from '../constants'
 
 export const startHandlers = CreateStateHandler(SKILL_STATES.START, {
+  'NewSession'() {
+    this.emit('NewSession')
+  },
+
   [INTENTS.START_INTENT]() {
     const prompt = this.t('COMMON.PROMPT')
     const reprompt = `${this.t('START.SUGGESTION')} ${this.t('COMMON.PROMPT')}`
@@ -33,11 +37,6 @@ export const startHandlers = CreateStateHandler(SKILL_STATES.START, {
     const prompt = this.t('COMMON.GOODBYE')
 
     this.emit(':tell', prompt)
-  },
-
-  'SessionEndedRequest'() {
-    this.handler.state = ''
-    this.emit(':saveState', true)
   },
 
   'Unhandled'() {

@@ -3,6 +3,10 @@ import { CreateStateHandler } from 'alexa-sdk'
 import { SKILL_STATES, INTENTS } from '../constants'
 
 export const helpHandlers = CreateStateHandler(SKILL_STATES.HELP, {
+  'NewSession'() {
+    this.emit('NewSession')
+  },
+
   'AMAZON.RepeatIntent'() {
     const prompt = `${this.t('HELP.DESCRIPTION')} ${this.t('HELP.MORE')}`
     const reprompt = this.t('HELP.MORE')
@@ -26,11 +30,6 @@ export const helpHandlers = CreateStateHandler(SKILL_STATES.HELP, {
   'AMAZON.CancelIntent'() {
     this.handler.state = SKILL_STATES.START
     this.emitWithState(INTENTS.START_INTENT)
-  },
-
-  'SessionEndedRequest'() {
-    this.handler.state = ''
-    this.emit(':saveState', true)
   },
 
   'Unhandled'() {
