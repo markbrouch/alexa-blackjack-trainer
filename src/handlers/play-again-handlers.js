@@ -3,6 +3,10 @@ import { CreateStateHandler } from 'alexa-sdk'
 import { SKILL_STATES, INTENTS } from '../constants'
 
 export const playAgainHandlers = CreateStateHandler(SKILL_STATES.PLAY_AGAIN, {
+  'NewSession'() {
+    this.emit('NewSession')
+  },
+
   'AMAZON.RepeatIntent'() {
     const prompt = this.t('DEAL.PLAY_AGAIN')
 
@@ -30,11 +34,6 @@ export const playAgainHandlers = CreateStateHandler(SKILL_STATES.PLAY_AGAIN, {
     const prompt = this.t('COMMON.GOODBYE')
 
     this.emit(':tell', prompt)
-  },
-
-  'SessionEndedRequest'() {
-    this.handler.state = ''
-    this.emit(':saveState', true)
   },
 
   'Unhandled'() {
