@@ -1,7 +1,7 @@
 {
   "name": "alexa-blackjack-trainer",
   "description": "A blackjack trainer skill for Alexa.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Mark Brouch <mark.brouch@gmail.com>",
   "bugs": {
     "url": "https://github.com/markbrouch/alexa-blackjack-trainer/issues",
