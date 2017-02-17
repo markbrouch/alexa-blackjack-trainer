@@ -104,10 +104,10 @@ export const calculateStats = (stats = {}, strategyType, playerWon) => {
   return {
     ...stats,
     [ATTRIBUTES.STATS.PLAYED]: (handsPlayed || 0) + 1,
-    [ATTRIBUTES.STATS.WON]: (handsWon || 0) + playerWon ? 1 : 0,
+    [ATTRIBUTES.STATS.WON]: (handsWon || 0) + (playerWon ? 1 : 0),
     [strategyType]: {
       [ATTRIBUTES.STATS.PLAYED]: (strategyTypePlayed || 0) + 1,
-      [ATTRIBUTES.STATS.WON]: (strategyTypeWon || 0) + playerWon ? 1 : 0
+      [ATTRIBUTES.STATS.WON]: (strategyTypeWon || 0) + (playerWon ? 1 : 0)
     }
   }
 }
